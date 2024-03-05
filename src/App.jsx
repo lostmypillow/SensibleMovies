@@ -1,34 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
+import { useState, useEffect } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Person(props) {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <h2>{props.name}</h2>
+    <h3>Age:{props.age}</h3>
     </>
+
+  )
+}
+
+function Incrementer() {
+  const [counter, setCounter] = useState(0)
+  useEffect(() => {
+   alert("You changed the counter to " + counter)
+  }, [counter])
+  return (
+    <>
+    <button onClick={
+      () => setCounter(
+        (prevCount) => prevCount - 1
+        )}>
+          -
+          </button>
+    <h1>{counter}</h1>
+    <button onClick={
+      () => setCounter(
+        (prevCount) => prevCount + 1
+        )}>+</button>
+    </>
+  )
+}
+
+
+function App() {
+  
+const name = "Johnny"
+// const isNameShowing = true
+  return (
+   <div>
+    <p>hello {2+2}</p>
+    {/* <h1>hello {isNameShowing? name: 'someone'}</h1> */}
+    {name ? (
+      <>
+      <h1>yes it&apos;s showing</h1>
+      </>
+      ): (
+      <>
+      <h1> nah it&apos;s not</h1>
+      </>
+      )
+      }
+      <Person 
+      name="John" 
+      age={2+2}/>
+<Incrementer />
+
+      </div> 
   )
 }
 
