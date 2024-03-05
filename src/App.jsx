@@ -3,7 +3,7 @@ import "./index.css";
 import SearchIcon from "./search.svg";
 import MovieCard from "./MovieCard";
 // const apikey = "e9cb394"
-const API_KEY = "https://www.omdbapi.com/?apikey=" + apikey;
+
 // const movie1 = {
 //   Title: "Dune",
 //   Year: "2021",
@@ -16,6 +16,8 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [apikey, setapikey] = useState("")
   const [searchTerm, setSearchTerm] = useState("");
+  
+  const API_KEY = "https://www.omdbapi.com/?apikey=" + apikey;
   const searchMovies = async (title) => {
     const response = await fetch(`${API_KEY}&s=${title}`);
     const data = await response.json();
