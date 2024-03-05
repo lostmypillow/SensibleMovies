@@ -1,67 +1,62 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from "react";
+import "./index.css";
+import SearchIcon from "./search.svg";
+import MovieCard from "./MovieCard";
+// const apikey = "e9cb394"
+const API_KEY = "https://www.omdbapi.com/?apikey=" + apikey;
+// const movie1 = {
+//   Title: "Dune",
+//   Year: "2021",
+//   imdbID: "tt1160419",
+//   Type: "movie",
+//   Poster:
+//     "https://m.media-amazon.com/images/M/MV5BMDQ0NjgyN2YtNWViNS00YjA3LTkxNDktYzFkZTExZGMxZDkxXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
+// };
+export default function App() {
+  const [movies, setMovies] = useState([]);
+  const [apikey, setapikey] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchMovies = async (title) => {
+    const response = await fetch(`${API_KEY}&s=${title}`);
+    const data = await response.json();
+    setMovies(data.Search);
+  };
 
-function Person(props) {
+  // useEffect(() => {
+  //   searchMovies("Dune");
+  // }, []);
+
   return (
-    <>
-    <h2>{props.name}</h2>
-    <h3>Age:{props.age}</h3>
-    </>
-
-  )
+    <div className="flex flex-col items-center justify-start w-screen min-h-svh m-5">
+      <h1 className="flex font-extrabold text-3xl">Sensible Movies</h1>
+      <input
+          className="border-2 p-4 bg-sky-100 rounded-full"
+          type="text"
+          placeholder="Enter apikey"
+          value={apikey}
+           onChange={(e) => setapikey(e.target.value)}
+        />
+      <div className="flex w-screen items-center gap-2 justify-center">
+        <input
+          className="border-2 p-4 bg-sky-100 rounded-full"
+          type="text"
+          placeholder="Search for movies"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <img
+          src={SearchIcon}
+          alt="search icon"
+          onClick={() => searchMovies(searchTerm)}
+        />
+      </div>
+      <div className="flex flex-col md:flex-row flex-wrap gap-4 md:gap-0 mt-4">
+        {movies?.length > 0 ? (
+          movies.map((movie) => <MovieCard movie={movie} />)
+        ) : (
+          <h1>no movies found</h1>
+        )}
+      </div>
+    </div>
+  );
 }
-
-function Incrementer() {
-  const [counter, setCounter] = useState(0)
-  useEffect(() => {
-   alert("You changed the counter to " + counter)
-  }, [counter])
-  return (
-    <>
-    <button onClick={
-      () => setCounter(
-        (prevCount) => prevCount - 1
-        )}>
-          -
-          </button>
-    <h1>{counter}</h1>
-    <button onClick={
-      () => setCounter(
-        (prevCount) => prevCount + 1
-        )}>+</button>
-    </>
-  )
-}
-
-
-function App() {
-  
-const name = "Johnny"
-// const isNameShowing = true
-  return (
-   <div>
-    <p>hello {2+2}</p>
-    {/* <h1>hello {isNameShowing? name: 'someone'}</h1> */}
-    {name ? (
-      <>
-      <h1>yes it&apos;s showing</h1>
-      </>
-      ): (
-      <>
-      <h1> nah it&apos;s not</h1>
-      </>
-      )
-      }
-      <Person 
-      name="John" 
-      age={2+2}/>
-<Incrementer />
-
-      </div> 
-  )
-}
-
-export default App
