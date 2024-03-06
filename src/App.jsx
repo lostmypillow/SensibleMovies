@@ -42,7 +42,7 @@ export default function App() {
         <input
           className="border-2 p-4 bg-sky-100 rounded-full"
           type="text"
-          placeholder="Search for movies"
+          placeholder="Search for movies (click search icon)"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
