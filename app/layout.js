@@ -4,7 +4,7 @@ import "./globals.css";
 const inter = Noto_Sans({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Sensible Movies",
+  title: "Sensibje Movies",
   description: "A sensible",
 };
 
