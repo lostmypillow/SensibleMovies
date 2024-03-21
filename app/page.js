@@ -40,7 +40,7 @@ export default function App() {
         className="flex flex-col lg:flex-row gap-4 items-center justify-between w-full"
       >
         <h1 id="AppTitle" className="flex font-extrabold text-3xl ml-2">
-          Sensible Movies
+          Sensible Movies (NextJS)
         </h1>
 
         <div
