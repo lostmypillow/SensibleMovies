@@ -1,17 +1,17 @@
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Noto_Sans({ subsets: ["latin"] });
+// const inter = Noto_Sans();
 
 export const metadata = {
-  title: "Sensibje Movies",
+  title: "SensibleMovies",
   description: "A sensible",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
